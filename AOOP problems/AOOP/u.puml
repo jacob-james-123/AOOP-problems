@@ -1,0 +1,45 @@
+@startuml
+
+class rideSharing {
+    + main(args: String[]): void
+}
+
+class Passenger {
+    - name: String
+    - id: int
+    - source: String
+    - destination: String
+    - shareRide: boolean
+
+    + getInstance(): Passenger (singleton)
+
+    private constructor()
+}
+
+interface Vehicle {
+    + getType(): String
+    + getCapacity(): int
+    // Other potential attributes
+}
+
+class Car implements Vehicle {
+    - type: String = "car"
+    - capacity: int = 4
+    + Vechiletype(): void
+}
+
+class Bike implements Vehicle {
+    - type: String = "bike"
+    - capacity: int = 1
+    + Vechiletype(): void
+}
+
+class VehicleFactory {
+    + getInstance(type: String): Vehicle
+}
+
+rideSharing  --> Passenger
+Passenger  --> Vehicle (uses)
+VehicleFactory --> Vehicle (creates)
+
+@enduml
